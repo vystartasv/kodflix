@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import getGallery from "../dao/gallery-get";
-import NotFound from "./NotFound";
 
 export default class Details extends React.Component {
     constructor() {

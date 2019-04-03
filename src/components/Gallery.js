@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import Stack from "./Stack";
 import getGallery from '../dao/gallery-get.js';
 // import { strictEqual } from "assert";
