@@ -10,7 +10,7 @@ export default function Gallery() {
                 getGallery().map(stack =>(
                     <Stack 
                         key={stack.id}
-                        id={stack.id} 
+                        id={stack.id}
                         title={stack.title} 
                         cover={stack.cover} />
                 ))
