@@ -1,9 +1,9 @@
-import alien from "./images/alien-poster-3-lareg.jpg";
-import darkest from "./images/darkest-hour-poster2-large.jpg";
-import dunkirk from "./images/dunkirkmain.jpg";
-import disaster from "./images/disaster-artist-poster-2-xl.jpg";
-import gold from "./images/gold-poste-uk.jpg";
-import daddys from "./images/daddy-poster-2.jpg";
+import alien from "../images/alien-poster-3-lareg.jpg";
+import darkest from "../images/darkest-hour-poster2-large.jpg";
+import dunkirk from "../images/dunkirkmain.jpg";
+import disaster from "../images/disaster-artist-poster-2-xl.jpg";
+import gold from "../images/gold-poste-uk.jpg";
+import daddys from "../images/daddy-poster-2.jpg";
 
 export default function getGallery(){
     return [

@@ -1,6 +1,6 @@
 import React from "react"
 import Stack from "./Stack";
-import getGallery from './gallery-get.js';
+import getGallery from '../dao/gallery-get.js';
 // import { strictEqual } from "assert";
 export default function Gallery() {
     return (
