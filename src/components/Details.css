@@ -1,0 +1,55 @@
+html {
+    color: #333;
+}
+
+.details {
+    padding: 8px;
+    color: white;
+    display: grid;
+    font-style: italic;
+    flex-direction: column;
+    background-color: #303030;
+}
+
+.coverPicture {
+    max-width: 600px;
+    padding: 20px;
+
+}
+
+.title {
+    font-weight: bold;
+}
+
+.synopsis {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    padding: 8px;
+    max-width: 45vw;
+}
+
+a {
+    color: white;
+    font-size: large;
+}
+
+.pictures {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+    flex-grow: inherit;
+}
+
+@media only screen and (max-width: 600px) {
+    .coverPicture {
+        padding: 0;
+    }
+
+    .pictures {
+        display: grid;
+    }
+
+    .synopsis {
+        max-width: 95vw;
+    }
+}
