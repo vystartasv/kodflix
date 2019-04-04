@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Details from './components/Details';
 import Gallery from './components/Gallery';
-import "./App.css";
 import NotFound from "./components/NotFound";
+import "./App.css";
 
 class App extends Component {
   render() {
