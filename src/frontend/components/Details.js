@@ -13,6 +13,7 @@ export default class Details extends React.Component {
     componentDidMount() {
         let name = this.props.match.params.details;
         let oneMovie = getGallery().find(movie => movie.id === name);
+        this.backendFetchingTest();
         if (oneMovie === undefined){
             this.setState({
                 redirect: true
@@ -25,6 +26,17 @@ export default class Details extends React.Component {
             });
         }
     }
+
+    backendFetchingTest() {
+        fetch('http://localhost:5000/api/shows')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(JSON.stringify(myJson));
+            });
+    }
+
     render () {
 
 
