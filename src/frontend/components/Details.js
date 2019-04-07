@@ -28,7 +28,9 @@ export default class Details extends React.Component {
     }
 
     backendFetchingTest() {
-        fetch('http://localhost:5000/api/shows')
+        const port = process.env.PORT || 5000;
+        const home = process.env.HOME || 'http://localhost';
+        fetch(`${home}:${port}/api/shows`)
             .then(function (response) {
                 return response.json();
             })
