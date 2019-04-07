@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
 
 app.get('/api/shows', (req, res, next) => {
     res.json(shows);
-    next();
+    res.end();
 });
 
 app.use(express.static(path.join(__dirname, '../../build')));
