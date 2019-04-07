@@ -1,7 +1,8 @@
 const express = require('express');
+const path = require('path');
 const shows = require('./shows');
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -12,6 +13,12 @@ app.use(function (req, res, next) {
 app.get('/api/shows', (req, res, next) => {
     res.json(shows);
     next();
+});
+
+app.use(express.static(path.join(__dirname, '../../build')));
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
 });
 
 app.listen(port, () => console.log(`Backend app is listening on port ${port}!`))

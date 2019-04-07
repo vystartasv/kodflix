@@ -1,6 +1,8 @@
 {
   "name": "kodflix",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Kodflix project for Kodiri",
+  "main": "app.js",
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
@@ -10,10 +12,13 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"
   },
+  "author": "Vilius Vystartas",
+  "license": "ISC",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/backend/app.js",
+    "start-frontend": "react-scripts start",
     "start-backend": "nodemon src/backend/app.js",
-    "start-all": "npm-run-all -p start start-backend",
+    "start-devn": "npm-run-all -p start start-backend",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
