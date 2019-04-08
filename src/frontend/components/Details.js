@@ -29,7 +29,7 @@ export default class Details extends React.Component {
 
     backendFetchingTest() {
         const port = process.env.PORT || 5000;
-        const home = process.env.HOME || 'http://localhost';
+        const home = 'https://kodflix-by-vilius.herokuapp.com';
         fetch(`${home}:${port}/api/shows`)
             .then(function (response) {
                 return response.json();
