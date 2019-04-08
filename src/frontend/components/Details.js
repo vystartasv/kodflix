@@ -28,7 +28,16 @@ export default class Details extends React.Component {
     }
 
     backendFetchingTest() {
-        fetch('http://localhost:5000/api/shows')
+        let home = '';
+        if (process.env.NODE_ENV === 'dev') {
+            home = 'https://kodflix-by-vilius.herokuapp.com';
+        } else if (process.env.NODE_ENV === 'prod') {
+            const port = process.env.PORT || 5000;
+            home = `http://localhost:${port}`;
+        }
+        // const port = process.env.PORT || 5000;
+        // const home = 'https://kodflix-by-vilius.herokuapp.com';
+        fetch(`${home}/api/shows`)
             .then(function (response) {
                 return response.json();
             })
