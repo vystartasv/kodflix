@@ -17,10 +17,10 @@
   "license": "ISC",
   "scripts": {
     "start": "run-s build start-node",
-    "start-node": "NODE_ENV=prod node src/backend/app.js",
+    "start-node": "NODE_ENV=prod node src/backend/server.js",
     "start-frontend": "react-scripts start",
-    "start-backend": "nodemon src/backend/app.js",
-    "start-dev": "NODE_ENV=dev run-p start start-backend",
+    "start-backend": "nodemon src/backend/server.js",
+    "start-dev": "NODE_ENV=dev run-p start-frontend start-backend",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
