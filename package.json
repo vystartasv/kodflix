@@ -16,12 +16,12 @@
   "author": "Vilius Vystartas",
   "license": "ISC",
   "scripts": {
-    "start": "run-s build start-node",
+    "start": "NODE_ENV=prod run-s build start-node",
     "start-node": "NODE_ENV=prod node src/backend/server.js",
-    "start-frontend": "react-scripts start",
-    "start-backend": "nodemon src/backend/server.js",
-    "start-dev": "NODE_ENV=dev run-p start-frontend start-backend",
-    "build": "react-scripts build",
+    "start-frontend": "NODE_ENV=dev react-scripts start",
+    "start-backend": "NODE_ENV=dev nodemon src/backend/server.js",
+    "start-dev": "run-p start-frontend start-backend",
+    "build": "NODE_ENV=prod react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
