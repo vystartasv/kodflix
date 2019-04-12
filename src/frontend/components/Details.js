@@ -52,7 +52,7 @@ export default class Details extends React.Component {
                                 {
                                     this.state.cover ?
                                         <img className='image'
-                                             src={require(`./../common/images${this.state.cover}.jpg`)}
+                                             src={require(`./../common/images/${this.state.cover}.jpg`)}
                                              alt={this.state.title}/>
                                         : null
                                 }

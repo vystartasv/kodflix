@@ -6,7 +6,7 @@ export default function Stack(props) {
         <Link to={`/shows/${props.id}`} className="cover">
             {
                 props.cover ?
-                    <img src={require(`./../common/images${props.cover}.jpg`)}
+                    <img src={require(`./../common/images/${props.cover}.jpg`)}
                          alt={props.title}/>
                     : null
             }
