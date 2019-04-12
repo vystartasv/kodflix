@@ -10,11 +10,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get(['/api/shows', '/api/shows/:showId'], (req, res) => {
+app.get('/api/shows/:showId*?', (req, res) => {
     res.json(list.shows(req.params.showId));
     res.end();
 });
-if (process.env.NODE_ENV === 'prod') {
+
+if (process.env.NODE_ENV !== 'dev') {
     app.use(express.static(path.join(__dirname, '../../build')));
 
     app.get('*', function (req, res) {
@@ -22,6 +23,5 @@ if (process.env.NODE_ENV === 'prod') {
     });
 }
 
-
 app.listen(port, () => console.log(
-    `Backend app running in '${process.env.NODE_ENV}' and is listening on port ${port}!`));
+    `Backend app running in '${process.env.NODE_ENV || 'PRODUCTION'}' and is listening on port ${port}!`));

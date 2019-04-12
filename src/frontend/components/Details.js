@@ -1,27 +1,21 @@
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import './Details.css';
-
+import LoadingIndicator from "./LoadingIndicator";
 
 export default class Details extends React.Component {
     constructor() {
         super();
         this.state = {
-            redirect: false
+            redirect: false,
+            isLoading: 'yes'
         }
-
     }
 
-    componentWillMount() {
-        let home = '';
-        if (process.env.NODE_ENV === 'dev') {
-            home = 'https://kodflix-by-vilius.herokuapp.com';
-        } else if (process.env.NODE_ENV === 'prod') {
-            const port = process.env.PORT || 5000;
-            home = `http://localhost:${port}`;
-        }
+    componentDidMount() {
+
         let name = this.props.match.params.details;
-        fetch(`${home}/api/shows/${name}`)
+        fetch(`/api/shows/${name}`)
             .then(result => {
 
                 return result.json().then(data => {
@@ -30,17 +24,20 @@ export default class Details extends React.Component {
                         id: data.id,
                         title: data.title,
                         cover: data.cover,
-                        synopsis: data.synopsis
+                        synopsis: data.synopsis,
+                        isLoading: 'no'
                     });
                 });
 
             })
-            .catch(e => this.setState({redirect: true}));
+            .catch(e => this.setState({redirect: true, isLoading: 'no'}))
     }
 
     render() {
         if (this.state.redirect) {
             return <Redirect to='/not-found'/>;
+        } else if (this.state.isLoading === 'yes') {
+            return <LoadingIndicator/>
         } else {
             return [
                 <div>
@@ -48,7 +45,7 @@ export default class Details extends React.Component {
                         <h1 className='title'>{this.state.title}</h1>
                         <div className='pictures'>
                             <h2 className='synopsis'>{this.state.synopsis}</h2>
-                            <div className='coverPicture'>\
+                            <div className='coverPicture'>
                                 {
                                     this.state.cover ?
                                         <img className='image'

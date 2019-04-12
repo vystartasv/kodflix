@@ -1,39 +1,82 @@
 html {
-  background-color: rgb(34 34 34);
+    background-color: rgb(34 34 34);
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
 .App {
-  text-align: center;
+    text-align: center;
 }
+
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
 }
+
 img {
-  position: relative;
-  max-width: 100%;
+    position: relative;
+    max-width: 100%;
 }
+
+.loader-parent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.loader {
+    display: block;
+    border: 30px solid #fff;
+    border-radius: 50%;
+    border-top: 30px solid #333;
+    width: 200px;
+    height: 200px;
+    -webkit-animation: spin 1.7s linear infinite;
+    animation: spin 1.7s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .cover {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
-.overlay{
-  text-align: center;
-  transition: bottom linear 0.33s;
-  font-size: 1em;
-  color: white;
-  background: black;
-  position: absolute;
-  bottom: -4em;
-  left: 0;
-  min-height: available;
-  width: 100%;
-  opacity: 0;
+
+.overlay {
+    text-align: center;
+    transition: bottom linear 0.33s;
+    font-size: 1em;
+    color: white;
+    background: black;
+    position: absolute;
+    bottom: -4em;
+    left: 0;
+    min-height: available;
+    width: 100%;
+    opacity: 0;
 }
-.cover:hover .overlay{
-  opacity: 0.6;
-  bottom: 0;
+
+.cover:hover .overlay {
+    opacity: 0.6;
+    bottom: 0;
 }
