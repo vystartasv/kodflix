@@ -1,6 +1,6 @@
+const list = require('./shows');
 const express = require('express');
 const path = require('path');
-const shows = require('./shows');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -10,8 +10,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/api/shows', (req, res) => {
-    res.json(shows);
+app.get(['/api/shows', '/api/shows/:showId'], (req, res) => {
+    res.json(list.shows(req.params.showId));
     res.end();
 });
 if (process.env.NODE_ENV === 'prod') {
@@ -23,4 +23,5 @@ if (process.env.NODE_ENV === 'prod') {
 }
 
 
-app.listen(port, () => console.log(`Backend app running in '${process.env.NODE_ENV}' and is listening on port ${port}!`))
+app.listen(port, () => console.log(
+    `Backend app running in '${process.env.NODE_ENV}' and is listening on port ${port}!`));
