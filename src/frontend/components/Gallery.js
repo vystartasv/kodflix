@@ -1,5 +1,5 @@
 import React from 'react';
-import Stack from './Stack';
+import GalleryStack from './GalleryStack';
 import LoadingIndicator from './LoadingIndicator';
 
 export default class Gallery extends React.Component {
@@ -11,10 +11,14 @@ export default class Gallery extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch('/api/shows/')
-      .then(result => result.json())
-      .then(data => this.setState({ shows: data, isLoading: 'no' }));
+  async componentDidMount() {
+    try {
+      const response = await fetch('/api/shows/');
+      const json = await response.json();
+      this.setState({ shows: json, isLoading: 'no' });
+    } catch (e) {
+      alert('Failed to fetch data from the backend!');
+    }
   }
 
   render() {
@@ -22,19 +26,17 @@ export default class Gallery extends React.Component {
       return <LoadingIndicator />;
     }
     return (
-      <div>
-        <div className="container">
-          {
-            this.state.shows.map(stack => (
-              <Stack
-                key={stack.id}
-                id={stack.id}
-                title={stack.title}
-                cover={stack.cover}
-              />
-            ))
-                        }
-        </div>
+      <div className="container">
+        {
+          this.state.shows.map(show => (
+            <GalleryStack
+              key={show.id}
+              id={show.id}
+              title={show.title}
+              cover={show.cover}
+            />
+          ))
+        }
       </div>
     );
   }

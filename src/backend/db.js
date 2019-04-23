@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, Server } = require('mongodb');
 const config = require('dotenv').config();
 
 const iAm = process.env.NODE_ENV;
