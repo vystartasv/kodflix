@@ -1,71 +1,51 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import getGallery from "../dao/gallery-get";
+import { Redirect } from 'react-router-dom';
 import './Details.css';
+import DetailsStack from './DetailsStack';
+import LoadingIndicator from './LoadingIndicator';
 
 export default class Details extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            redirect: false
+  constructor() {
+    super();
+    this.state = {
+      shows: [],
+      redirect: false,
+      isLoading: 'yes',
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const name = this.props.match.params.details;
+      const response = await fetch(`/api/shows/${name}`);
+      const json = await response.json();
+      await json.length === 0
+        ? this.setState({ redirect: true, isLoading: 'no' })
+        : this.setState({ shows: json, isLoading: 'no' });
+    } catch (e) {
+      alert('Failed to fetch data from the backend!');
+    }
+  }
+
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to="/not-found" />;
+    } if (this.state.isLoading === 'yes') {
+      return <LoadingIndicator />;
+    }
+    return (
+      <div>
+        {
+          this.state.shows.map(show => (
+            <DetailsStack
+              id={show.id}
+              title={show.title}
+              cover={show.cover}
+              synopsis={show.synopsis}
+            />
+          ))
         }
-    }
-    componentDidMount() {
-        let name = this.props.match.params.details;
-        let oneMovie = getGallery().find(movie => movie.id === name);
-        this.backendFetchingTest();
-        if (oneMovie === undefined){
-            this.setState({
-                redirect: true
-            });
-        } else {
-            this.setState({
-                title: oneMovie.title,
-                cover: oneMovie.cover,
-                synopsis: oneMovie.synopsis
-            });
-        }
-    }
-
-    backendFetchingTest() {
-        let home = '';
-        if (process.env.NODE_ENV === 'dev') {
-            home = 'https://kodflix-by-vilius.herokuapp.com';
-        } else if (process.env.NODE_ENV === 'prod') {
-            const port = process.env.PORT || 5000;
-            home = `http://localhost:${port}`;
-        }
-        // const port = process.env.PORT || 5000;
-        // const home = 'https://kodflix-by-vilius.herokuapp.com';
-        fetch(`${home}/api/shows`)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                console.log(JSON.stringify(myJson));
-            });
-    }
-
-    render () {
-
-
-            if (this.state.redirect) {
-                return <Redirect to='/not-found' />;
-            } else {
-                return [
-                    <div>
-                        <div className='details'>
-                            <h1 className='title'>{this.state.title}</h1>
-                            <div className='pictures'>
-                                <h2 className='synopsis'>{this.state.synopsis}</h2>
-                                <div className='coverPicture'>
-                                    <img className='image' src={this.state.cover} alt={this.state.title}/>
-                                </div>
-                            </div>
-                    </div>
-                        <Link to='/'>Back to home page</Link>
-                    </div>
-                ];
-            }
-    }
+      </div>
+    );
+  }
 }
