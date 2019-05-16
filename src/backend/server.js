@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const db = require('./db');
+const showsRouter = require('./routes/shows');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,15 +11,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/shows/:showId*?', async (req, res) => {
-  try {
-    const result = await db.getTheShows(req.params.showId);
-    res.json(result);
-    res.end();
-  } catch (e) {
-    console.log('Failed to fetch data from the DB connector!');
-  }
-});
+app.use('/api/shows', showsRouter);
 
 if (process.env.NODE_ENV !== 'dev') {
   app.use(express.static(path.join(__dirname, '../../build')));
