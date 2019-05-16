@@ -12,11 +12,7 @@ export default function DetailsStack(props) {
               <div className="pictures">
                 <h2 className="synopsis">{props.synopsis}</h2>
                 <div className="coverPicture">
-                  <img
-                    className="image"
-                    src={require(`./../common/images/${props.cover}.jpg`)}
-                    alt={props.title}
-                  />
+                  <img className="image" src={require(`./../common/images/${props.cover}.jpg`)} alt={props.title} />
                 </div>
               </div>
               <Link to="/">Back to home page</Link>

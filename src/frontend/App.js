@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ReactGA from 'react-ga';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import Details from './components/Details';
 import Gallery from './components/Gallery';
 import NotFound from './components/NotFound';
@@ -7,6 +8,14 @@ import './App.css';
 import Menu from './components/Menu';
 
 class App extends Component {
+  componentDidMount() {
+    ReactGA.initialize("UA-140328689-1");
+    ReactGA.pageview(window.location.pathname);
+    this.props.history.listen((location, action) => {
+      ReactGA.pageview(window.location.pathname);
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -23,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
